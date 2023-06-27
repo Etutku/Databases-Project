@@ -2,12 +2,14 @@
 - Importing comma seperated value (CSV) file taxonomy_iw.csv.gz which representd Wikipedia main topic classification categories. Each line is a single record with two fields indicating caregory-subcategory relationship such as "1880s_films", "1889_films" indicates that there is a "1880s_films" category which has "1889_films" subcategory.
 
 - _CSV file into a database_:
+
+```SQL
 cd Desktop
 cd project
 ls
 scp * s414151@labagh.pl:
 
-```SQL
+
 -- For local installation
 LOAD DATA INFILE '/path/to/taxonomy_iw.csv' -- for local installation
 INTO TABLE your_table_name
