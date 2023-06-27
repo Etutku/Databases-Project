@@ -1,4 +1,4 @@
-##### Task 0: Data Import** 
+##### Task 0: Data Import
 - Importing comma-separated value (CSV) file taxonomy_iw.csv.gz which represented Wikipedia main topic classification categories. Each line is a single record with two fields indicating category-subcategory relationship such as "1880s_films", "1889_films" indicates that there is a "1880s_films" category which has "1889_films" subcategory.
 
 - _CSV file into a database_:
