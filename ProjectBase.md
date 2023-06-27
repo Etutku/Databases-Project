@@ -13,7 +13,7 @@ scp * s414151@labagh.pl:
 
 ```SQL
 -- For PostgreSQL
-\copy taxonomy FROM 'taxonomy_iw.csv' DELIMITER ',' CSV HEADER;
+\copy taxonomy FROM 'taxonomy_iw.csv'  CSV ;
 ```
 
 ##### **Task 1: Find children of a given node**
