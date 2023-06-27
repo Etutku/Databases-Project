@@ -43,7 +43,7 @@ WHERE category = '1880s_films';
 WITH RECURSIVE children AS (
   SELECT subcategory
   FROM taxonomy
-  WHERE category = 'selected_node' -- changeable
+  WHERE category = '1880s_films' -- changeable
   UNION
   SELECT t.subcategory
   FROM taxonomy t
@@ -81,7 +81,7 @@ WITH RECURSIVE grandchildren AS (
   WHERE category IN (
     SELECT subcategory
     FROM taxonomy
-    WHERE category = 'selected_node' -- replace
+    WHERE category = '1880s_films' -- replace
   )
   UNION
   SELECT t.subcategory
@@ -99,7 +99,7 @@ SELECT * FROM parents;
 WITH RECURSIVE parents AS (
   SELECT category
   FROM taxonomy
-  WHERE subcategory = 'selected_node' -- replace 
+  WHERE subcategory = '1880s_films' -- replace 
   UNION
   SELECT t.category
   FROM taxonomy t
@@ -114,7 +114,7 @@ SELECT COUNT(*) AS parent_count FROM parents;
 WITH RECURSIVE parents AS (
   SELECT category
   FROM taxonomy
-  WHERE subcategory = 'selected_node' -- replace
+  WHERE subcategory = '1880s_films' -- replace
   UNION
   SELECT t.category
   FROM taxonomy t
@@ -122,7 +122,7 @@ WITH RECURSIVE parents AS (
 )
 SELECT COUNT(*) AS parent_count FROM parents;
 ```
-##### **Task 6: Finds all grand parents of a given node**
+##### **Task 6: Finds all grandparents of a given node**
 ```SQL
 SELECT * FROM grandparents;
 ```
@@ -130,7 +130,7 @@ SELECT * FROM grandparents;
 WITH RECURSIVE grandparents AS (
   SELECT category
   FROM taxonomy
-  WHERE subcategory = 'selected_node' -- replace 
+  WHERE subcategory = '1880s_films' -- replace 
   UNION
   SELECT t.category
   FROM taxonomy t
@@ -139,7 +139,7 @@ WITH RECURSIVE grandparents AS (
 SELECT * FROM grandparents;
 ```
 ##### **Task 7: Counts how many uniquely named nodes there are**
-- NOT SURE
+
 ```SQL
 SELECT COUNT(DISTINCT node) AS node_count
 FROM (
@@ -149,7 +149,7 @@ FROM (
 ) AS combined_nodes;
 ```
 ##### **Task 8: Finds root node, one which is not a subcategory of any other node**
-- NOT SURE
+
 ```SQL
 SELECT category
 FROM taxonomy
