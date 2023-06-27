@@ -1,5 +1,5 @@
 ##### Task 0: Data Import** 
-- Importing comma seperated value (CSV) file taxonomy_iw.csv.gz which representd Wikipedia main topic classification categories. Each line is a single record with two fields indicating caregory-subcategory relationship such as "1880s_films", "1889_films" indicates that there is a "1880s_films" category which has "1889_films" subcategory.
+- Importing comma-separated value (CSV) file taxonomy_iw.csv.gz which represented Wikipedia main topic classification categories. Each line is a single record with two fields indicating category-subcategory relationship such as "1880s_films", "1889_films" indicates that there is a "1880s_films" category which has "1889_films" subcategory.
 
 - _CSV file into a database_:
 
@@ -32,12 +32,18 @@ CREATE TABLE taxonomy (
 );
 ```
 
+```SQL
+SELECT category, subcategory
+FROM taxonomy
+WHERE category = '1880s_films';
+```
+
 - **_Recursive_** query for finding children of given node
 ```SQL
 WITH RECURSIVE children AS (
   SELECT subcategory
   FROM taxonomy
-  WHERE category = 'selected_node' -- changable
+  WHERE category = 'selected_node' -- changeable
   UNION
   SELECT t.subcategory
   FROM taxonomy t
@@ -46,6 +52,7 @@ WITH RECURSIVE children AS (
 SELECT * FROM children;
 ```
 
+
 ##### **Task 2: Count all children of a given node**
 - As in the 1st task, same process must be apply for creating table to store data and import data from the CSV file.
 
@@ -53,7 +60,7 @@ SELECT * FROM children;
 WITH RECURSIVE children AS (
   SELECT subcategory
   FROM taxonomy
-  WHERE category = 'selected_node' -- replace 
+  WHERE category = '1880s_films' -- replace 
   UNION
   SELECT t.subcategory
   FROM taxonomy t
@@ -62,7 +69,7 @@ WITH RECURSIVE children AS (
 SELECT COUNT(*) AS child_count FROM children;
 ```
 
-##### **Task 3: Find all grand children of a given node**
+##### **Task 3: Find all grandchildren of a given node**
 ```SQL
 SELECT * FROM grandchildren;
 ```
@@ -148,7 +155,7 @@ SELECT category
 FROM taxonomy
 WHERE category NOT IN (SELECT subcategory FROM taxonomy WHERE subcategory IS NOT NULL);
 ```
-##### **Task 9: Finds nodes with most children, there could be more than one**
+##### **Task 9: Finds nodes with the most children, there could be more than one**
 ```SQL
 WITH child_counts AS (
   SELECT category, COUNT(subcategory) AS child_count
@@ -162,7 +169,7 @@ WHERE child_count = (
   FROM child_counts
 );
 ```
-##### **Task 10: Finds nodes with least children, there could be more than one**
+##### **Task 10: Finds nodes with the least children, there could be more than one**
 - **Query** to find the nodes and child counts 
 ```SQL
 SELECT category, COUNT(subcategory) AS child_count
