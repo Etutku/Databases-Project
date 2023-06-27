@@ -188,21 +188,20 @@ FROM (
 - Retrieve the nodes regarding to minimum child count
 - This query will select the categories that have a child count equal to the minimum child count determined in the previous step
 ```SQL
-SELECT category
-FROM (
-  SELECT category, COUNT(subcategory) AS child_count
+WITH category_counts AS (
+  SELECT category, COUNT(subcategory) AS num_children
   FROM taxonomy
   GROUP BY category
-) AS child_counts
-WHERE child_count = (
-  SELECT MIN(child_count) AS min_child_count
-  FROM (
-    SELECT COUNT(subcategory) AS child_count
-    FROM taxonomy
-    GROUP BY category
-  ) AS counts
+),
+min_child_count AS (
+  SELECT MIN(num_children) AS min_count
+  FROM category_counts
 )
+SELECT category
+FROM category_counts
+WHERE num_children = (SELECT min_count FROM min_child_count);
 ```
+-- "category_counts" is used to calculate the number of children (subcategories) for each category by grouping and counting the subcategories
 ##### **Task 11: Renames given node**
 ```SQL
 UPDATE taxonomy
