@@ -9,15 +9,11 @@ cd project
 ls
 scp * s414151@labagh.pl:
 
-
--- For local installation
-LOAD DATA INFILE '/path/to/taxonomy_iw.csv' -- for local installation
-INTO TABLE your_table_name
 ```
 
 ```SQL
 -- For PostgreSQL
-COPY tableName FROM '/path/to/taxonomy_iw.csv' DELIMITER ',' CSV HEADER;
+\copy taxonomy FROM 'taxonomy_iw.csv' DELIMITER ',' CSV HEADER;
 ```
 
 ##### **Task 1: Find children of a given node**
