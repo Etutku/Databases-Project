@@ -78,17 +78,16 @@ SELECT * FROM grandchildren;
 WITH RECURSIVE grandchildren AS (
   SELECT subcategory
   FROM taxonomy
-  WHERE category IN (
-    SELECT subcategory
-    FROM taxonomy
-    WHERE category = '1880s_films' -- replace
-  )
+  WHERE category = '1880s_films' 
+
   UNION
+
   SELECT t.subcategory
   FROM taxonomy t
   INNER JOIN grandchildren gc ON t.category = gc.subcategory
 )
-SELECT * FROM grandchildren;
+SELECT *
+FROM grandchildren;
 ```
 
 ##### **Task 4: Find all parents of a given node**
@@ -107,6 +106,7 @@ WITH RECURSIVE parents AS (
 )
 ```
 ##### **Task 5: Counts all parents of a given node**
+- working
 ```SQL
 SELECT COUNT(*) AS parent_count FROM parents;
 ```
@@ -123,6 +123,7 @@ WITH RECURSIVE parents AS (
 SELECT COUNT(*) AS parent_count FROM parents;
 ```
 ##### **Task 6: Finds all grandparents of a given node**
+- working
 ```SQL
 SELECT * FROM grandparents;
 ```
@@ -139,9 +140,9 @@ WITH RECURSIVE grandparents AS (
 SELECT * FROM grandparents;
 ```
 ##### **Task 7: Counts how many uniquely named nodes there are**
-
+- working
 ```SQL
-SELECT COUNT(DISTINCT node) AS node_count
+SELECT COUNT( node) AS node_count
 FROM (
   SELECT category AS node FROM taxonomy
   UNION
@@ -149,13 +150,14 @@ FROM (
 ) AS combined_nodes;
 ```
 ##### **Task 8: Finds root node, one which is not a subcategory of any other node**
-
+- working
 ```SQL
 SELECT category
 FROM taxonomy
 WHERE category NOT IN (SELECT subcategory FROM taxonomy WHERE subcategory IS NOT NULL);
 ```
 ##### **Task 9: Finds nodes with the most children, there could be more than one**
+- working
 ```SQL
 WITH child_counts AS (
   SELECT category, COUNT(subcategory) AS child_count
