@@ -25,6 +25,13 @@ CREATE TABLE taxonomy (
 );
 ```
 
+```SQL
+CREATE TABLE taxonomy (
+  category VARCHAR,
+  subcategory VARCHAR
+);
+```
+
 - **_Recursive_** query for finding children of given node
 ```SQL
 WITH RECURSIVE children AS (
