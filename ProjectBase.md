@@ -24,11 +24,7 @@ CREATE TABLE taxonomy (
   subcategory text
 );
 ```
-- Import data using **_COPY_** command
-```SQL
-COPY taxonomy (category, subcategory)
-FROM '/path/to/taxonomy_iw.csv' DELIMITER ',' CSV HEADER;
-```
+
 - **_Recursive_** query for finding children of given node
 ```SQL
 WITH RECURSIVE children AS (
