@@ -14,7 +14,6 @@ scp * s414151@labagh.pl:
 LOAD DATA INFILE '/path/to/taxonomy_iw.csv' -- for local installation
 INTO TABLE your_table_name
 FIELDS TERMINATED BY ',' ENCLOSED BY '"'
-IGNORE 1 LINES;
 ```
 
 ```SQL
