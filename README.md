@@ -15,7 +15,7 @@
 
  **2.** "taxonomy_iw.csv.gz" file available.
 
- **3.** Compile tasks with using [Project Base](https://github.com/Etutku/Databases-Project/blob/main/ProjectBase.md)
+ **3.** Compile tasks with using [Project Base](https://gitlab.kis.agh.edu.pl/databases-2-2023/db2-edibe-kacper/-/blob/main/ProjectBase.md)
 
 # Setup
  **1.** Create a new PostgreSQL database.
